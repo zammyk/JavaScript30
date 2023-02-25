@@ -69,12 +69,18 @@
     key.classList.add('playing');
   }
 
-  function removeTransition(e) {
-    if(e.propertyName != 'transform') return;
-    this.classList.remove('playing');
-  }
-  const keys = document.querySelectorAll('.key');
-  keys.forEach(key=>key.addEventListener('transitionend',removeTransition));
+  // function removeTransition(e) {
+  //   if(e.propertyName != 'transform') return;
+  //   this.classList.remove('playing');
+  // }
+  // const keys = document.querySelectorAll('.key');
+  // keys.forEach(key=>key.addEventListener('transitionend',removeTransition));
+
+  // easier and better way
+  window.addEventListener('keyup', function(e) {
+  const key = document.querySelector(`.key[data-key = "${e.keyCode}"]`);
+  key.classList.remove('playing');
+  });
   window.addEventListener('keydown',playSound);
 </script>
 
